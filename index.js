@@ -1,15 +1,12 @@
-import express from "express" // импортируем библиотеку express
+const express = require ('express')// импортируем библиотеку express
+const userRouter = require('/routs/user.routs.js')
 
 const PORT = 5000 // задаем порт для работы сервера
 const app = express()
 
-app.use(express.json())
 
-// запрос на сервер, параметрами принемает запрос req и ответ res
-app.post('/', (req, res) => {
-    console.log(req.body)
-    res.status(200).json('сервер работает')
-})
+app.use(express.json())
+app.use('/api', userRouter)
 
 // вызов функции express
 app.listen(PORT,() => {
