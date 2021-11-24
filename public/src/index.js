@@ -1,4 +1,4 @@
-async function getPost(id) {
+async function getPost(id) { // получение поста
     let resPostID = false
     try {
         resPostID = await fetch(`http://localhost:5000/api/post/?id=${id}`)
@@ -8,7 +8,7 @@ async function getPost(id) {
     return await resPostID.json()
 }
 
-async function getPerson() {
+async function getPerson() { // получение всеъ пользователей
     let resUser = false
     try {
         resUser = await fetch(`http://localhost:5000/api/user`)
@@ -18,7 +18,7 @@ async function getPerson() {
     return await resUser.json()
 }
 
-async function getOnePerson(id) {
+async function getOnePerson(id) { // получение одного пользователя
     let resUser = false
     try {
         resUser = await fetch(`http://localhost:5000/api/user/${id}`)
@@ -29,18 +29,23 @@ async function getOnePerson(id) {
 
 }
 
-function createUser() {
-    let in1 = document.getElementById('name')
-    let in2 = document.getElementById('surname')
-    console.log(in1.value)
-    console.log(in2.value)
+function createUser() { // создание пользователя
+    let in1 = document.getElementById('name').value
+    let in2 = document.getElementById('surname').value
 
+    let obj = {
+        name: in1,
+        surname: in2
+    }
+    console.log(in1)
+    console.log(in2)
     fetch(`http://localhost:5000/api/user`, {
         method: 'POST',
-        body:{
-            name:"value1",
-            surname:"value2"
-        }
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
     }).then(() => {
         console.log('ok')
     }).catch((e) => {
