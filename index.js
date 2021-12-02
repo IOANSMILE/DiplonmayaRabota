@@ -10,6 +10,9 @@ app.use(express.static('public')) // создание папки
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'./index.html' ))
 })
+app.get('/api/user', (req, res) => {
+    res.sendFile(path.join(__dirname,'./auth.html' ))
+})
 app.use(express.json()) // для чтения json формата
 app.use('/api', userRouter) // роутеры юзеров
 app.use('/api', postRouter) // роутеры постов
