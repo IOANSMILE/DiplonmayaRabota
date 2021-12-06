@@ -32,3 +32,21 @@ a{
 .header_button{
     cursor: pointer;
 }
+
+
+
+
+
+.divBlock{
+    width:90%;
+    padding:5pt;
+    margin:auto;
+}
+.line_blockk {
+    width:100px;
+    height:100px;
+    background:#689CD2;
+    float:left;
+    margin:  15px 15px 15px 10px;
+    padding: 10px;
+}
