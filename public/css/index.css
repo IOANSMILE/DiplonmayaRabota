@@ -1,3 +1,7 @@
+a{
+    color: #ffffff;
+    text-decoration: none;
+}
 .header{
     display: flex;
     justify-content: space-between;
