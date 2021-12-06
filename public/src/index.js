@@ -67,6 +67,8 @@ function createUser() { // создание пользователя
     div_2.innerText = post.title
     div_3.innerText = post.content
 })()
+    // .then(data => console.log(data))
+    // .catch(err => console.log(err))
 
 
 // вот так выглядит деструктуризация массивов и объектов
