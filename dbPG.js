@@ -4,7 +4,7 @@ const pool = new Pool({ // создание объекта класса
     password: "696084",
     host: "localhost",
     port: 5432,
-    database: "node_postgres"
+    database: "clothes_magazin"
 })
 
 module.exports = pool // экспорт объекта

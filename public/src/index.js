@@ -55,20 +55,52 @@ function createUser() { // создание пользователя
 
 
 (async () => {
-    console.log(await getOnePerson(3)) // возвращает конкретного пользователя
-    const [vs, zb, io] = await getPerson() // возвращает всех пользователей
-    const [post] = await getPost(3) // возвращает пост
-    console.log(post)
-    console.log(vs, zb, io)
-    let div_1 = document.getElementById('id')
-    let div_2 = document.getElementById('title')
-    let div_3 = document.getElementById('content')
-    div_1.innerText = post.id
-    div_2.innerText = post.title
-    div_3.innerText = post.content
+    console.log(await getOnePerson(1)) // возвращает конкретного пользователя
+    const a = []
+    a.push(await getPerson())  // возвращает всех пользователей
+    const b = []
+        b.push(await getPost(1))
+    for (let i = 0; i < b.length; i++) {
+        for (let v of b[i]) {
+            let div1 = document.getElementsByClassName('divBlock')[0]
+            let div2 = document.createElement('div')
+            div2.setAttribute('class', 'line_blockk')
+
+            let lable1 = document.createElement('label')
+            lable1.setAttribute('class', 'lable_div')
+            let lable2 = document.createElement('label')
+            lable2.setAttribute('class', 'lable_div')
+            let lable3 = document.createElement('label')
+            lable3.setAttribute('class', 'lable_div')
+            let lable4 = document.createElement('label')
+            lable4.setAttribute('class', 'lable_div')
+
+            lable1.innerText = v.title
+            lable2.innerText = v.razmer
+            lable3.innerText = v.content
+            lable4.innerText = v.price
+
+            div2.appendChild(lable1)
+            div2.appendChild(lable2)
+            div2.appendChild(lable3)
+            div2.appendChild(lable4)
+            div1.appendChild(div2);
+        }
+
+    }
+
 })()
-    // .then(data => console.log(data))
-    // .catch(err => console.log(err))
+// .then(data => console.log(data))
+// .catch(err => console.log(err))
+
+
+
+
+
+
+
+
+
 
 
 // вот так выглядит деструктуризация массивов и объектов

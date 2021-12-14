@@ -4,11 +4,14 @@ const postRouter = require('./routs/postRouts.js')
 const authRouter = require('./routs/authRouter.js')
 const basketRouter = require('./routs/basketRout.js')
 const path = require("path"); // роутеры постов
+const bodyParser = require('body-parser')
 
 const PORT = 5000 // задаем порт для работы сервера
 const app = express()
 
 app.use(express.static('public')) // создание папки
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname,'/view/index.html' ))
 })

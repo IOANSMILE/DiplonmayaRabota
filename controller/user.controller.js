@@ -1,9 +1,10 @@
 const db = require('../dbPG') // подключаем БД для создания аккаунта
 class UserController { // класс будет определять что может наше приложение
     async createUsers(req, res){  // метод создания пользователя
-        const {name, surname} = req.body // получим из тела запроса переменные
+        const {name, surname, email, number, role} = req.body // получим из тела запроса переменные
         //sql запрос к БД, в функции query пишем sql запрос
-        const newPerson = await db.query(`INSERT INTO person (name, surname) values ($1, $2) RETURNING *`, [name, surname])
+        const newPerson = await db.query(`INSERT INTO person (name, surname, email, number, role)
+            values ($1, $2, $3, $4, $5) RETURNING *`, [name, surname, email, number, role])
         res.json(newPerson.rows[0]) // возвращаем в json формате
     }
     async getUsers(req, res){ // возващение всех пользователей
@@ -17,10 +18,10 @@ class UserController { // класс будет определять что мо
         res.json(user.rows[0]) // возвращаем его на клиент
     }
     async updateUsers(req, res){  // обновление данных о пользователе
-        const {id,name, surname} = req.body // получаем данные из тела запроса
+        const {id, name, surname, email, number, role} = req.body // получаем данные из тела запроса
         // sql запрос к БД
-        const user =  await db.query(`UPDATE person set name = $1, surname = $2 where id = $3 RETURNING *`,
-            [name, surname, id])
+        const user =  await db.query(`UPDATE person set name = $1, surname = $2, email = $3, number = $4, role = $5
+             where id = $6 RETURNING *`, [name, surname, email, number, role, id])
         res.json(user.rows[0])
 
     }

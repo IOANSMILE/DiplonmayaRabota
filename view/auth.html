@@ -6,8 +6,14 @@
     <script src="src/index.js"></script>
 </head>
 <body>
-<button>sefs</button>
-
-
+<form action="/api/post" method="post"  id="form" enctype="multipart/form-data">
+    <label>img</label>
+    <input type="file" id="img" name="filedata"/><br>
+    <input  type="text" name="title" /><br>
+    <input  type="text" name="razmer" /><br>
+    <input  type="text" name="content" /><br>
+    <input   type="text" name="price" /><br>
+    <input type="submit"  id="submit" value="создать пользователя"/>
+</form>
 </body>
 </html>
