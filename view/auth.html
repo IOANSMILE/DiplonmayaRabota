@@ -3,17 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="src/index.js"></script>
+<!--    <script src="src/index.js"></script>-->
+    <link rel="stylesheet" href="css/auth.css">
 </head>
 <body>
-<form action="/api/post" method="post"  id="form" enctype="multipart/form-data">
-    <label>img</label>
-    <input type="file" id="img" name="filedata"/><br>
-    <input  type="text" name="title" /><br>
-    <input  type="text" name="razmer" /><br>
-    <input  type="text" name="content" /><br>
-    <input   type="text" name="price" /><br>
-    <input type="submit"  id="submit" value="создать пользователя"/>
-</form>
+
+<!--<form action="/api/post" method="post"  id="form" enctype="multipart/form-data">-->
+<!--    <label>img</label>-->
+<!--    <input type="file" id="img" name="filedata"/><br>-->
+<!--    <input  type="text" name="title" /><br>-->
+<!--    <input  type="text" name="razmer" /><br>-->
+<!--    <input  type="text" name="content" /><br>-->
+<!--    <input   type="text" name="price" /><br>-->
+<!--    <input type="submit"  id="submit" value="создать пользователя"/>-->
+<!--</form>-->
+
+
+<div class="login-page">
+    <div class="form">
+        <form class="login-form">
+            <input type="text" placeholder="username"/>
+            <input type="password" placeholder="password"/>
+            <button>login</button>
+            <p class="message">Не зарегстрированы ? <a href="reristration">Создать акаунт</a></p>
+        </form>
+    </div>
+</div>
+
 </body>
 </html>

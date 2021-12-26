@@ -65,7 +65,9 @@ function createUser() { // создание пользователя
             let div1 = document.getElementsByClassName('divBlock')[0]
             let div2 = document.createElement('div')
             div2.setAttribute('class', 'line_blockk')
-
+            let img = document.createElement('img')
+            img.setAttribute('src', 'http://localhost:5000/upload/bebu_776_s_807_1_1-14+.jpg')
+            img.setAttribute('class', 'img')
             let lable1 = document.createElement('label')
             lable1.setAttribute('class', 'lable_div')
             let lable2 = document.createElement('label')
@@ -74,12 +76,13 @@ function createUser() { // создание пользователя
             lable3.setAttribute('class', 'lable_div')
             let lable4 = document.createElement('label')
             lable4.setAttribute('class', 'lable_div')
+            lable1.innerText = `название: ${v.title}`
+            lable2.innerText = `размер: ${v.razmer}`
+            lable3.innerText = `осписание: ${v.content}`
+            lable4.innerText = `цена: ${v.price}`
 
-            lable1.innerText = v.title
-            lable2.innerText = v.razmer
-            lable3.innerText = v.content
-            lable4.innerText = v.price
 
+            div2.appendChild(img)
             div2.appendChild(lable1)
             div2.appendChild(lable2)
             div2.appendChild(lable3)

@@ -3,6 +3,7 @@ const userRouter = require('./routs/user.routs.js') // роутеры юзеро
 const postRouter = require('./routs/postRouts.js')
 const authRouter = require('./routs/authRouter.js')
 const basketRouter = require('./routs/basketRout.js')
+const registrationRout = require ('./routs/registrationRout.js')
 const path = require("path"); // роутеры постов
 const bodyParser = require('body-parser')
 
@@ -22,6 +23,8 @@ app.use('/api', userRouter) // роутеры юзеров
 app.use('/api', postRouter) // роутеры постов
 app.use('/auth', authRouter) // роутеры аутентификации
 app.use('/basket', basketRouter) // роутер корзины
+app.use('/reristration', registrationRout)
+
 
 
 // вызов функции express
