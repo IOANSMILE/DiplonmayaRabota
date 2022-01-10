@@ -21,7 +21,9 @@ const fileFilter = (req, file, cd) => { // настройки фильтраци
 const upload = multer({storage: storageConfig, fileFilter: fileFilter}).single("filedata")
 
 router.post('/post', upload, postControllers.createPost) // создание поста
-router.get('/post', postControllers.getPostByUser) // получение поста
-
+router.get('/post/:id', postControllers.getPostByUser) // получение конкретного поста поста
+router.get('/post', postControllers.getPost) // получение всех постов
+router.put('/post', postControllers.updatePost) // обновление поста
+router.delete('/post/:id', postControllers.deletePost) // даление поста
 
 module.exports = router

@@ -1,14 +1,29 @@
-async function getPost(id) { // получение поста
+async function getOnePost(id) { // получение поста
     let resPostID = false
     try {
-        resPostID = await fetch(`http://localhost:5000/api/post/?id=${id}`)
+        resPostID = await fetch(`http://localhost:5000/api/post/${id}`)
     } catch (e) {
         console.log(e)
     }
     return await resPostID.json()
 }
 
-async function getPerson() { // получение всеъ пользователей
+async function getPost() {
+    let resPost = false
+    try {
+        resPost = await fetch(`http://localhost:5000/api/post`)
+    } catch (e) {
+        console.log(e)
+    }
+    return await resPost.json()
+}
+
+
+
+
+
+
+async function getPerson() {
     let resUser = false
     try {
         resUser = await fetch(`http://localhost:5000/api/user`)
@@ -29,39 +44,21 @@ async function getOnePerson(id) { // получение одного польз�
 
 }
 
-function createUser() { // создание пользователя
-    let in1 = document.getElementById('name').value
-    let in2 = document.getElementById('surname').value
-
-    let obj = {
-        name: in1,
-        surname: in2
-    }
-    console.log(in1)
-    console.log(in2)
-    fetch(`http://localhost:5000/api/user`, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(obj)
-    }).then(() => {
-        console.log('ok')
-    }).catch((e) => {
-        console.log(e)
-    })
-}
-
 
 (async () => {
-    console.log(await getOnePerson(1)) // возвращает конкретного пользователя
+
+    const b = []
+
+
+    console.log(await getPost())
+
+
+    console.log(await getOnePost(2))
+
     const a = []
     a.push(await getPerson())  // возвращает всех пользователей
-    const b = []
-        b.push(await getPost(1))
-    for (let i = 0; i < b.length; i++) {
-        for (let v of b[i]) {
+    for (let i = 0; i < a.length; i++) {
+        for (let v of a[i]) {
             let div1 = document.getElementsByClassName('divBlock')[0]
             let div2 = document.createElement('div')
             div2.setAttribute('class', 'line_blockk')
@@ -76,10 +73,10 @@ function createUser() { // создание пользователя
             lable3.setAttribute('class', 'lable_div')
             let lable4 = document.createElement('label')
             lable4.setAttribute('class', 'lable_div')
-            lable1.innerText = `название: ${v.title}`
-            lable2.innerText = `размер: ${v.razmer}`
-            lable3.innerText = `осписание: ${v.content}`
-            lable4.innerText = `цена: ${v.price}`
+            lable1.innerText = `название: ${v.name}`
+            lable2.innerText = `размер: ${v.surname}`
+            lable3.innerText = `осписание: ${v.email}`
+            lable4.innerText = `цена: ${v.role}`
 
 
             div2.appendChild(img)

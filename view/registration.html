@@ -22,20 +22,19 @@
     </div>
 </div>
 
+
 <div class="login-page">
     <div class="form">
-        <div class="login-form">
+        <form id="form" method="post" action="/api/user" class="login-form">
             <p class="message">РЕГИСТРАЦИЯ</p>
-            <input class="registr" id="name" type="text" placeholder="введите имя"/>
-            <input class="registr" id="surname" type="text" placeholder="введите фамилию"/>
-            <input class="registr" id="email" type="text" placeholder="введите email"/>
-            <input class="registr" id="number"  type="text" placeholder="введите телефон"/>
-            <button onclick="CheckingTheUsersAccount()">создать</button>
-
-        </div>
+            <input id="name" class="registr" name="name" type="text" placeholder="введите имя"/>
+            <input id="surname" class="registr" name="surname" type="text" placeholder="введите фамилию"/>
+            <input id="email" class="registr" name="email" type="text" placeholder="введите email"/>
+            <input id="password" class="registr" name="password" type="text" placeholder="введите пароль"/>
+            <input id="number" class="registr" name="number"  type="text" placeholder="введите телефон"/>
+            <button type="submit" >создать</button>
+        </form>
     </div>
 </div>
-
-
 </body>
 </html>

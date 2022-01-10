@@ -11,27 +11,39 @@ class PostController {
             return
         }
         const img = `http://localhost:5000/upload/${file.originalname}`
-        const {title, razmer, content, price, user_id} = req.body
-        const newPost = await db.query(`INSERT INTO post (img, title, razmer, content, price, user_id) 
-            values ($1, $2, $3, $4, $5, $6) RETURNING *`, [img, title, razmer, content, price, user_id])
+        const {title, razmer, gender, content, price, user_id} = req.body
+        const newPost = await db.query(`INSERT INTO post (img, title, razmer, gender, content, price, user_id) 
+            values ($1, $2, $3, $4, $5, $6, $7) RETURNING *`, [img, title, razmer, gender, content, price, user_id])
         res.json(newPost.rows[0])
+    }
+    async getPost (req, res){ // получение всех постов
+        const post =  await db.query(`select * from post`) // запрос к БД на получение всех пользователей
+        res.json(post.rows)
     }
 
     async getPostByUser(req, res) { // получение конкретного поста
-        const id = req.query.id
+        const id = req.params.id
         const posts = await db.query(`select * from post where id = $1`, [id])
         res.json(posts.rows)
-
     }
 
-    // async updatePost(req, res){  // обновление данных о пользователе
-    //     const {id,name, surname, email, number, role} = req.body // получаем данные из тела запроса
-    //     // sql запрос к БД
-    //     const user =  await db.query(`UPDATE person set name = $1, surname = $2, email = $3, number = $4, role = $5
-    //          where id = $6 RETURNING *`, [name, surname, email, number, role, id])
-    //     res.json(user.rows[0])
-    //
-    // }
+
+
+    async updatePost(req, res){  // обновление данных о пользователе
+        const {id, title, razmer, gender, content, price, user_id} = req.body // получаем данные из тела запроса
+        // sql запрос к БД
+        const posts =  await db.query(`UPDATE post set title = $1, razmer = $2, gender = $3, content = $4, price = $5,
+             user_id = $6 where id = $7 RETURNING *`, [title, razmer, gender, content, price, user_id, id])
+        res.json(posts.rows[0])
+
+    }
+    async deletePost(req, res){  // удаления пользователя
+        const id = req.params.id // получаем из параметров запроса id
+        const posts =  await db.query(`DELETE from post where id = $1`, [id]) // получаем пользователя по id
+        res.json(posts.rows[0]) // возвращаем его на клиент
+
+    }
 }
+
 
 module.exports = new PostController()

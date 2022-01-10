@@ -1,23 +1,14 @@
-async function getPerson() { // получение всеъ пользователей
-    let resUser = false
-    try {
-        resUser = await fetch(`http://localhost:5000/api/user`)
-    } catch (e) {
-        console.log(e)
-    }
-    return await resUser.json()
-}
-
-
 function createUser() { // создание пользователя
     let name = document.getElementById('name').value
     let surname = document.getElementById('surname').value
     let email = document.getElementById('email').value
+    let password = document.getElementById('password').value
     let number = document.getElementById('number').value
     let objValue = {
         name: name,
         surname: surname,
         email: email,
+        password: password,
         number: number,
         role: 'user'
     }
@@ -35,28 +26,13 @@ function createUser() { // создание пользователя
     })
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    let form = document.getElementById('form')
+    form.addEventListener('submit', (event) => {
+        createUser()
+        event.preventDefault();
+    })
+})
 
 
-const a = []
-function CheckingTheUsersAccount() {
-    let email = document.getElementById('email').value
-    for (let i = 0; i < a.length; i++) {
-        for (let v of a[i]) {
-            if (email === v.email) {
-                alert('пользователь с таким email уже есть')
-                return
-            } else {
-                createUser()
-                return
-            }
-
-        }
-
-    }
-
-}
-
-(async () => {
-    a.push(await getPerson())  // возвращает всех пользователей
-})()
 
