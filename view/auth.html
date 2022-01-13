@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="css/auth.css">
+    <script src="src/auth.js"></script>
 </head>
 <body>
 
@@ -11,10 +12,10 @@
 
 <div class="login-page">
     <div class="form">
-        <form class="login-form">
-            <input type="text" placeholder="username"/>
-            <input type="password" placeholder="password"/>
-            <button>login</button>
+        <form id="formLoginIN" class="login-form"  method="post" action="/auth/login">
+            <input id="emailLoginIN" name="emailLoginIN" type="text" placeholder="username"/>
+            <input  id="passwordLoginIN" name="passwordLoginIN" type="password" placeholder="password"/>
+            <button id="buttonLoginIN" type="submit">login</button>
             <p class="message">Не зарегстрированы ? <a href="reristration">Создать акаунт</a></p>
         </form>
     </div>

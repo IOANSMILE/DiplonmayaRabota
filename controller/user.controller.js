@@ -1,13 +1,15 @@
 const db = require('../dbPG') // подключаем БД для создания аккаунта
+const passwordUtils  = require('../utils/password')
 class UserController { // класс будет определять что может наше приложение
     async createUsers(req, res){  // метод создания пользователя
+        const password = req.body.password
+        const hashPassword = passwordUtils.hash(password)  // работает, тут будет хэсш пароля
 
-        const {name, surname, email, password, number, role} = req.body // получим из тела запроса переменные
 
-
+        const {name, surname, email,  number, role} = req.body // получим из тела запроса переменные
         //sql запрос к БД, в функции query пишем sql запрос 'вставить в person'
         const newPerson = await db.query(`INSERT INTO person (name, surname, email, password, number, role)
-            values ($1, $2, $3, $4, $5, $6) RETURNING *`, [name, surname, email, password, number, role])
+            values ($1, $2, $3, $4, $5, $6) RETURNING *`, [name, surname, email, hashPassword, number, role])
         res.json(newPerson.rows[0]) // возвращаем в json формате
     }
     async getUsers(req, res){ // возващение всех пользователей

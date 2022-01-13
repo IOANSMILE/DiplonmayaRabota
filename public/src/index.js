@@ -1,4 +1,4 @@
-async function getOnePost(id) { // получение поста
+async function getOnePost(id) { // получение поста по id
     let resPostID = false
     try {
         resPostID = await fetch(`http://localhost:5000/api/post/${id}`)
@@ -8,7 +8,7 @@ async function getOnePost(id) { // получение поста
     return await resPostID.json()
 }
 
-async function getPost() {
+async function getPost() { // получение всез постов
     let resPost = false
     try {
         resPost = await fetch(`http://localhost:5000/api/post`)
@@ -23,7 +23,7 @@ async function getPost() {
 
 
 
-async function getPerson() {
+async function getPerson() { // получение всех пользователей
     let resUser = false
     try {
         resUser = await fetch(`http://localhost:5000/api/user`)
@@ -41,20 +41,27 @@ async function getOnePerson(id) { // получение одного польз�
         console.log(e)
     }
     return await resUser.json()
-
 }
+
+// async function authLoginIN (){
+//     let resUser = false
+//     try {
+//         resUser = await fetch(`http://localhost:5000/auth/login`)
+//     } catch (e) {
+//         console.log(e)
+//     }
+//     return await resUser.json()
+// }
+
+
 
 
 (async () => {
 
-    const b = []
 
-
+    // console.log(await authLoginIN())
     console.log(await getPost())
-
-
     console.log(await getOnePost(2))
-
     const a = []
     a.push(await getPerson())  // возвращает всех пользователей
     for (let i = 0; i < a.length; i++) {
