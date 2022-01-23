@@ -14,7 +14,7 @@ class AuthController { // класс будет определять что мо
 
         const loginIN = await db.query(`SELECT * FROM person WHERE email = '${email}' AND password = '${passwordUtils.hash(password)}'`)
         try {
-            res.cookie('userID', loginIN.rows[0].id.toString(), { maxAge: 900000, httpOnly: true });
+            res.cookie('userID', loginIN.rows[0].id.toString(), { maxAge: 9000000, httpOnly: true });
             res.redirect('/admin')
         } catch (e){
             res.redirect('/auth')

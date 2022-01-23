@@ -10,8 +10,9 @@ function createUser() { // создание пользователя
         email: email,
         password: password,
         number: number,
-        role: 'user'
+        role: 'admin'
     }
+
     fetch(`http://localhost:5000/api/user`, {
         method: 'POST',
         headers: {
