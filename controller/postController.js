@@ -14,7 +14,8 @@ class PostController {
         const {title, razmer, gender, content, price, user_id} = req.body
         const newPost = await db.query(`INSERT INTO post (img, title, razmer, gender, content, price, user_id) 
             values ($1, $2, $3, $4, $5, $6, $7) RETURNING *`, [img, title, razmer, gender, content, price, user_id])
-        res.json(newPost.rows[0])
+        res.redirect('/admin')
+        // res.json(newPost.rows[0])
     }
     async getPost (req, res){ // получение всех постов
         const post =  await db.query(`select * from post`) // запрос к БД на получение всех пользователей
