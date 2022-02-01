@@ -1,3 +1,14 @@
+body {
+    background: #689CD2; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #689CD2, #3869c1);
+    background: -moz-linear-gradient(right, #689CD2, #3869c1);
+    background: -o-linear-gradient(right, #689CD2, #3869c1);
+    background: linear-gradient(to left, #689CD2, #3869c1);
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 a{
     color: #ffffff;
     text-decoration: none;
@@ -36,13 +47,13 @@ a{
 
 
 
-
-.divBlock{
+.divAdmin{
     width:90%;
     padding:5pt;
     margin:auto;
 }
-.DIV_CLIENT {
+
+.DIV_BASKET {
     width:240px;
     height:350px;
     background: #cc99fe;
@@ -50,7 +61,7 @@ a{
     margin:  10px 2px 10px 10px;
     padding: 10px;
 }
-.img_CLIENT{
+.img_BASKET{
     border-radius: 8px;
     display: block;
     margin: 0 auto;
@@ -59,7 +70,7 @@ a{
     width:210px;
     height:210px;
 }
-.lable_CLIENT{
+.LABLE_BASKET{
     top: 15px;
     display: block;
     text-align:left;
@@ -70,7 +81,7 @@ a{
 }
 
 
-.div_basket{
+.div_delete_clothes{
     float: right; /* блок занимает ширину содержимого, max-width её ограничивает */
     border: none;
     outline: none;
@@ -88,15 +99,18 @@ a{
     background: #2196F3;
 }
 
-
-
-body {
-    background: #689CD2; /* fallback for old browsers */
-    background: -webkit-linear-gradient(right, #689CD2, #3869c1);
-    background: -moz-linear-gradient(right, #689CD2, #3869c1);
-    background: -o-linear-gradient(right, #689CD2, #3869c1);
-    background: linear-gradient(to left, #689CD2, #3869c1);
+.price {
+    text-align: center;
     font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    text-transform: uppercase;
+    outline: 0;
+    background:#cc99fe;
+    width: 80%;
+    border: 0;
+    padding: 10px 75px;
+    color: #FFFFFF;
+    font-size: 8px;
+    cursor: pointer;
+    display: inline-block;
+
 }

@@ -45,7 +45,8 @@ function createUsers() {
         },
         body: JSON.stringify(objValue)
     }).then(() => {
-        console.log('ok')
+        alert('Успешно создан')
+        createElementUser()
     }).catch((e) => {
         console.log(e)
     })
@@ -347,14 +348,12 @@ async function post() {
             yes.addEventListener('click', () => {
                 let div_lable = document.getElementsByClassName('DIV_POST')[j].getElementsByClassName('DIV_LABLE_POST')[0]
                 deletePost(parseInt(div_lable.innerText.substring(3)))
-
             })
             no.addEventListener('click', () => {
                 document.getElementsByClassName('wat-page')[0].remove()
             })
         })
     }
-
     let div_chage = document.getElementsByClassName('div_change')
     for (let k = 0; k < div_chage.length; k++) {
         div_chage[k].addEventListener('click', (event) => {
@@ -390,19 +389,13 @@ async function post() {
 
             push.addEventListener('click', () => {
                 changesPost()
-
-
             })
-
             stop.addEventListener('click', () => {
                 vizov()
             })
-
-
         })
     }
 }
-
 // создание пользователя
 function createElementUser() {
     deletElement()

@@ -1,14 +1,4 @@
-async function getOnePost(id) { // получение поста по id
-    let resPostID = false
-    try {
-        resPostID = await fetch(`http://localhost:5000/api/post/${id}`)
-    } catch (e) {
-        console.log(e)
-    }
-    return await resPostID.json()
-}
-
-async function getPost() { // получение всез постов
+async function getPost() { // получение всех постов
     let resPost = false
     try {
         resPost = await fetch(`http://localhost:5000/api/post`)
@@ -18,87 +8,89 @@ async function getPost() { // получение всез постов
     return await resPost.json()
 }
 
-
-
-
-
-
-async function getPerson() { // получение всех пользователей
-    let resUser = false
-    try {
-        resUser = await fetch(`http://localhost:5000/api/user`)
-    } catch (e) {
-        console.log(e)
+function getClothes (){
+    const clothesLocalStorage = localStorage.getItem('clothes')
+    if (clothesLocalStorage !== null){
+        return JSON.parse(clothesLocalStorage)
     }
-    return await resUser.json()
+    return []
 }
-
-async function getOnePerson(id) { // получение одного пользователя
-    let resUser = false
-    try {
-        resUser = await fetch(`http://localhost:5000/api/user/${id}`)
-    } catch (e) {
-        console.log(e)
+function putClothes(basket){
+    let clothes = getClothes()
+    const index = clothes.indexOf(basket)
+    console.log(index)
+    if (index === -1){
+        clothes.push(basket)
+    } else {
+        clothes.splice(index, 1)
     }
-    return await resUser.json()
+    localStorage.setItem('clothes', JSON.stringify(clothes))
 }
-
-// async function authLoginIN (){
-//     let resUser = false
-//     try {
-//         resUser = await fetch(`http://localhost:5000/auth/login`)
-//     } catch (e) {
-//         console.log(e)
-//     }
-//     return await resUser.json()
-// }
-
-
-
 
 (async () => {
-
-
-    // console.log(await authLoginIN())
-    console.log(await getPost())
-    console.log(await getOnePost(2))
-    const a = []
-    a.push(await getPerson())  // возвращает всех пользователей
-    for (let i = 0; i < a.length; i++) {
-        for (let v of a[i]) {
-            let div1 = document.getElementsByClassName('divBlock')[0]
+    const post = []
+    post.push(await getPost())  // возвращает всех постов
+    for (let i = 0; i < post.length; i++) {
+        for (let objPost of post[i]) {
+            console.log(objPost.img)
             let div2 = document.createElement('div')
-            div2.setAttribute('class', 'line_blockk')
+            div2.setAttribute('class', 'DIV_CLIENT')
+
+            let div3 = document.createElement('div')
+            div3.innerText = "в корзину"
+            div3.setAttribute('class', 'div_basket')
+
             let img = document.createElement('img')
-            img.setAttribute('src', 'http://localhost:5000/upload/bebu_776_s_807_1_1-14+.jpg')
-            img.setAttribute('class', 'img')
+            img.setAttribute('src', `${objPost.img}`)
+            img.setAttribute('class', 'img_CLIENT')
             let lable1 = document.createElement('label')
-            lable1.setAttribute('class', 'lable_div')
+            lable1.setAttribute('class', 'lable_CLIENT')
             let lable2 = document.createElement('label')
-            lable2.setAttribute('class', 'lable_div')
+            lable2.setAttribute('class', 'lable_CLIENT')
             let lable3 = document.createElement('label')
-            lable3.setAttribute('class', 'lable_div')
+            lable3.setAttribute('class', 'lable_CLIENT')
             let lable4 = document.createElement('label')
-            lable4.setAttribute('class', 'lable_div')
-            lable1.innerText = `название: ${v.name}`
-            lable2.innerText = `размер: ${v.surname}`
-            lable3.innerText = `осписание: ${v.email}`
-            lable4.innerText = `цена: ${v.role}`
-
-
+            lable4.setAttribute('class', 'lable_CLIENT')
+            let lable5 = document.createElement('label')
+            lable5.setAttribute('class', 'lable_CLIENT')
+            let lable6 = document.createElement('label')
+            lable6.setAttribute('class', 'lable_CLIENT')
+            lable6.innerText = `ID: ${objPost.id}`
+            lable1.innerText = `Название: ${objPost.title}`
+            lable2.innerText = `Размер: ${objPost.razmer}`
+            lable3.innerText = `Пол: ${objPost.gender}`
+            lable4.innerText = `Описание: ${objPost.content}`
+            lable5.innerText = `Цена: ${objPost.price}`
+            let div1 = document.getElementsByClassName('divBlock')[0]
+            div2.appendChild(div3)
             div2.appendChild(img)
+            div2.appendChild(lable6)
             div2.appendChild(lable1)
             div2.appendChild(lable2)
             div2.appendChild(lable3)
             div2.appendChild(lable4)
-            div1.appendChild(div2);
+            div2.appendChild(lable5)
+            div1.appendChild(div2)
         }
-
     }
-
+    let div_basket = document.getElementsByClassName('div_basket')
+    for (let j = 0; j<div_basket.length; j++){
+        div_basket[j].addEventListener('click', () => {
+            let clothes_img = document.getElementsByClassName('DIV_CLIENT')[j].querySelector('img')
+            let clothes_label = document.getElementsByClassName('DIV_CLIENT')[j].querySelectorAll('label')
+            let clothes = new Object()
+            clothes.img = clothes_img.src
+            clothes.id = clothes_label[0].innerText.replace(/[^ ]+ /, '')
+            clothes.title = clothes_label[1].innerText.replace(/[^ ]+ /, '')
+            clothes.razmer = clothes_label[2].innerText.replace(/[^ ]+ /, '')
+            clothes.gender = clothes_label[3].innerText.replace(/[^ ]+ /, '')
+            clothes.content = clothes_label[4].innerText.replace(/[^ ]+ /, '')
+            clothes.price = clothes_label[5].innerText.replace(/[^ ]+ /, '')
+            putClothes(clothes)
+        })
+    }
 })()
-// .then(data => console.log(data))
-// .catch(err => console.log(err))
+
 
 
 
